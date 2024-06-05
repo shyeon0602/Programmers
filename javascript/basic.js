@@ -141,3 +141,51 @@ function solution(arr, queries) {
   });
   return result;
 }
+
+// 수정필요한 코드
+function solution(arr, queries) {
+  let result = [];
+  queries.forEach(([s, e, k]) => {
+    console.log([s, e, k]);
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (i >= s && i <= e && arr[i] > k) newArr.push(arr[i]);
+      else newArr.push(-1);
+      console.log(k, newArr, Math.min.apply(Math, newArr));
+    }
+    return result.push(Math.min.apply(Math, newArr));
+  });
+  return result;
+}
+
+// 수정한 코드
+function solution(arr, queries) {
+  let result = [];
+
+  queries.forEach(([s, e, k]) => {
+    let min = Infinity; // 가장 작은 값을 저장할 변수를 초기화합니다.
+
+    // 주어진 범위 [s, e] 내에서 k보다 큰 값 중 가장 작은 값을 찾습니다.
+    for (let i = s; i <= e; i++) {
+      if (arr[i] > k && arr[i] < min) {
+        min = arr[i];
+      }
+    }
+
+    // 가장 작은 값을 결과 배열에 추가합니다. 필터링된 배열이 비어 있는 경우에는 -1을 추가합니다.
+    result.push(min === Infinity ? -1 : min);
+  });
+
+  return result;
+}
+
+// 참고할만한 코드
+function solution(arr, queries) {
+  return queries.map(
+    ([s, e, k]) =>
+      arr
+        .slice(s, e + 1)
+        .filter((n) => n > k)
+        .sort((a, b) => a - b)[0] || -1
+  );
+}
