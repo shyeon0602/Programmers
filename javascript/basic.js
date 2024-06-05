@@ -57,3 +57,9 @@ function solution(num_list) {
     : num_list.push(+lastNum * 2);
     return num_list;
 }
+
+// 마지막 두 원소 코드 -> 구조분해할당 사용
+function solution(num_list) {
+  const [a, b] = [...num_list].reverse();
+  return [...num_list, a > b ? (a-b):a*2];
+}
