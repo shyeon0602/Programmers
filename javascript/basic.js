@@ -125,3 +125,19 @@ function solution(arr, queries) {
   // forEach() -> 본래 배열 직접 수정, map() -> 새로운 배열 생성
   return arr;
 }
+
+// 수열과 구간 쿼리2
+// query의 마지막 요소보다 크면서 가장 작은 arr[i] 값
+// query = [s, e, k]
+function solution(arr, queries) {
+  let result = [];
+  queries.forEach(([s, e, k]) => {
+    // .slice() -> s부터 e까지 부분배열 추출, filter() -> 조건 확인 및 새로운 배열 반환
+    let filter = arr.slice(s, e + 1).filter((num) => num > k);
+    // 필터링된 배열이 비어있으면 infinity 반환 -> 빈 배열인지 확인하고 빈 배열은 -1 반환
+    filter.length > 0
+      ? result.push(Math.min.apply(Math, filter)) // 배열에서 Math.min 사용하기 위해서 .apply(Math, 배열명) 입력 필요
+      : result.push(-1);
+  });
+  return result;
+}
