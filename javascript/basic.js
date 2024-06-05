@@ -95,3 +95,22 @@ function solution(n, control) {
   // reduce() 사용 -> 현재 값을 파라미터로 전달해서 객체에서 계산함수 실행
   return [...control].reduce((acc, char) => operations[char](acc), n);
 }
+
+// 수 조작하기2
+const obj = {
+  w: 1,
+  s: -1,
+  d: 10,
+  a: -10,
+};
+function solution(numLog) {
+  return numLog.reduce((acc, cur, idx, arr) => {
+    // index가 0일 때, 함수 실행x -> acc 빈값 반환
+    if(idx == 0) return acc;
+    const diff = cur - arr[idx - 1];
+    // find(), object key값 사용
+    let key = Object.keys(obj).find((k) => obj[k] == diff);
+    if (key) acc += key;
+    return acc;
+  }, "");
+}
