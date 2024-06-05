@@ -47,3 +47,13 @@ function solution(num_list) {
   }
   return Number(even) + Number(odd);
 }
+
+// 마지막 두 원소
+function solution(num_list) {
+  let lastNum = num_list[num_list.length - 1];
+  let secondBackNum = num_list[num_list.length - 2];
+  lastNum > secondBackNum
+    ? num_list.push(+lastNum - +secondBackNum)
+    : num_list.push(+lastNum * 2);
+    return num_list;
+}
