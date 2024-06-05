@@ -55,11 +55,29 @@ function solution(num_list) {
   lastNum > secondBackNum
     ? num_list.push(+lastNum - +secondBackNum)
     : num_list.push(+lastNum * 2);
-    return num_list;
+  return num_list;
 }
 
 // 마지막 두 원소 코드 -> 구조분해할당 사용
 function solution(num_list) {
   const [a, b] = [...num_list].reverse();
-  return [...num_list, a > b ? (a-b):a*2];
+  return [...num_list, a > b ? a - b : a * 2];
+}
+
+// 수 조작하기1
+/* 
+"w" : n이 1 커집니다.
+"s" : n이 1 작아집니다.
+"d" : n이 10 커집니다.
+"a" : n이 10 작아집니다.
+*/
+function solution(n, control) {
+  let controlArr = [...control];
+  controlArr.map((char) => {
+    if (char == "w") n++;
+    if (char == "s") n--;
+    if (char == "d") n += 10;
+    if (char == "a") n -= 10;
+  });
+  return n;
 }
