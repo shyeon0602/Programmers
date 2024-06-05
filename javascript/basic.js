@@ -106,11 +106,22 @@ const obj = {
 function solution(numLog) {
   return numLog.reduce((acc, cur, idx, arr) => {
     // index가 0일 때, 함수 실행x -> acc 빈값 반환
-    if(idx == 0) return acc;
+    if (idx == 0) return acc;
     const diff = cur - arr[idx - 1];
     // find(), object key값 사용
     let key = Object.keys(obj).find((k) => obj[k] == diff);
     if (key) acc += key;
     return acc;
   }, "");
+}
+
+// 수열과 구간 쿼리3
+function solution(arr, queries) {
+  // arr[i]와 arr[j] 값을 바꿈
+  // forEach(), 구조분해할당 사용
+  queries.forEach(([i, j]) => {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  });
+  // forEach() -> 본래 배열 직접 수정, map() -> 새로운 배열 생성
+  return arr;
 }
