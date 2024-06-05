@@ -81,3 +81,17 @@ function solution(n, control) {
   });
   return n;
 }
+
+// 수 조작하기1 -> 객체 사용 및 reduce 사용
+// 객체 사용해서 문자별 계산 함수 작성
+// 객체에서는 증감연산자, 할당연산자 사용x
+const operations = {
+  w: (num) => num + 1,
+  s: (num) => num - 1,
+  d: (num) => num + 10,
+  a: (num) => num - 10,
+};
+function solution(n, control) {
+  // reduce() 사용 -> 현재 값을 파라미터로 전달해서 객체에서 계산함수 실행
+  return [...control].reduce((acc, char) => operations[char](acc), n);
+}
