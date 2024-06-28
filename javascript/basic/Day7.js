@@ -75,3 +75,25 @@ function solution(start_num, end_num) {
 
   return arr;
 }
+
+// 콜라츠 수열 만들기
+// 짝수일 때 -> 2로 나누기, 홀수일 때 -> 3x + 1 계산, 계산과정 및 결과값을 배열로 반환
+function solution(n) {
+  let arr = [];
+  while(n!=1){
+    arr.push(n);
+    if(n%2 == 0) n = n/2;
+    else n = 3 * n + 1;
+  }
+  arr.push(1);
+  return arr;
+}
+
+// 다른 사람 풀이
+// 재귀 사용
+function solution(n, arr = []) {
+  arr.push(n)
+  if (n === 1) return arr
+  if (n % 2 === 0) return solution(n / 2, arr)
+  return solution(3 * n + 1, arr)
+}
