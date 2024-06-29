@@ -76,13 +76,28 @@ function solution(start_num, end_num) {
   return arr;
 }
 
+// fill()과 map()을 사용한 풀이
+function solution(start, end) {
+  return Array(end - start + 1)
+    .fill(start)
+    .map((x, idx) => x + idx);
+}
+
+// from()을 사용한 풀이 -> from() 공부 필요
+function solution(start, end) {
+  idx = start; // 이 구문 없이 바로 start를 사용해도 됨
+  return Array.from({ length: end - start + 1 }, () => {
+    return start++;
+  });
+}
+
 // 콜라츠 수열 만들기
 // 짝수일 때 -> 2로 나누기, 홀수일 때 -> 3x + 1 계산, 계산과정 및 결과값을 배열로 반환
 function solution(n) {
   let arr = [];
-  while(n!=1){
+  while (n != 1) {
     arr.push(n);
-    if(n%2 == 0) n = n/2;
+    if (n % 2 == 0) n = n / 2;
     else n = 3 * n + 1;
   }
   arr.push(1);
@@ -92,8 +107,8 @@ function solution(n) {
 // 다른 사람 풀이
 // 재귀 사용
 function solution(n, arr = []) {
-  arr.push(n)
-  if (n === 1) return arr
-  if (n % 2 === 0) return solution(n / 2, arr)
-  return solution(3 * n + 1, arr)
+  arr.push(n);
+  if (n === 1) return arr;
+  if (n % 2 === 0) return solution(n / 2, arr);
+  return solution(3 * n + 1, arr);
 }
